@@ -91,7 +91,11 @@ This example is for Windows 2K.
   Start In = C:\Program Files\pycron
 
 You will notice that console processes are launched in a new console window.
-To avoid this, use the provided program silentstart in your cron file.
+To avoid this, use the provided program silentstart in your crontab file. For
+example:
+
+# Run backup script every morning at 3am
+0 3 * * * silentstart c:\scripts\backup.bat
 
 **
 ** Limitations

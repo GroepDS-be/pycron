@@ -2,7 +2,8 @@
 
 ##############################################################################
 # Emilio Schapira
-# Copyright (C) 2003
+# Copyright (C) 2003 Advanced Interface Technologies, Inc.
+# http://www.advancedinterfaces.com
 # http://sourceforge.net/projects/pycron/
 # 
 # This program is free software; you can redistribute it and/or modify it

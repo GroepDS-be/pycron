@@ -8,3 +8,4 @@ dist:
 	gzip pycron.tar
 	-rm pycron.zip
 	zip -l pycron.zip ${DISTFILES}
+	zip -j pycron.zip ../bin/win32/silentstart.exe

@@ -59,7 +59,13 @@ def match(value, expr):
         if int(v) == value:
             return 1
     return 0
-    
+
+def calcNextTime():    
+    # Calculate next time with exact seconds.
+    tt = time.localtime(time.time() + 60)
+    tt = tt[:5] + (0,) + tt[6:]
+    return time.mktime(tt)
+
 
 crontabFileName = "./crontab"
 logFileName = "./cron.log"
@@ -80,21 +86,25 @@ f.close()
 # Log cron start
 log('cron: started with file %s' % crontabFileName)
 
-# Calculate next time with exact seconds.
-tt = time.localtime(time.time() + 60)
-tt = tt[:5] + (0,) + tt[6:]
-nextTime = time.mktime(tt)
+nextTime = calcNextTime()
 
 # Loop forever
 while 1:
 
     # Sleep for the time remaining until the next exact minute
     currentTime = time.time()
+
     if currentTime < nextTime:
-	# Add a fraction of a second to make sure we are in
-	# the right second (just for prettier logs)
+        # Add a fraction of a second to make sure we are in
+        # the right second (just for prettier logs)
         time.sleep(nextTime-currentTime+.1)
 
+    # Check if the time has changed by more than two minutes. This
+    # case arises when the system clock is changed. We must reset the timer.
+    if abs(time.time() - nextTime) > 120:
+        log('Adjusted system clock.')
+        nextTime = calcNextTime()
+        
     # Build a tuple with the current time
     curTuple = time.localtime(nextTime)
 
@@ -116,8 +126,10 @@ while 1:
                     timeMatch = timeMatch and match(curTuple[2],tokens[2])
                     # month
                     timeMatch = timeMatch and match(curTuple[1],tokens[3])
-                    # weekday
-                    timeMatch = timeMatch and match(curTuple[6],tokens[4])
+                    # weekday (in crontab 0 or 7 is Sunday)
+                    weekday = curTuple[6]+1
+                    matchWeekday = match(weekday,tokens[4]) or (weekday == 7 and match(0,tokens[4]))
+                    timeMatch = timeMatch and matchWeekday
 
                     if timeMatch:
                         run(string.join(tokens[5:]))

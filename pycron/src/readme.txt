@@ -97,6 +97,8 @@ example:
 # Run backup script every morning at 3am
 0 3 * * * silentstart c:\scripts\backup.bat
 
+silentstart.exe must be in the path. You can copy it to c:\winnt\system32.
+
 **
 ** Limitations
 **

@@ -10,9 +10,17 @@
 ** INTRODUCTION
 **
 
-This is a clone of the well-known cron job scheduler for the unix flavored operating systems. It is implemented in Python. The main motivation for the project is to provide a robust cron daemon for the Microsoft Windows* operating system. However, Python Cron is platform-independant, and can be used on any operating system that supports python.
+This is a clone of the well-known cron job scheduler for the unix flavored 
+operating systems. It is implemented in Python. The main motivation for the 
+project is to provide a robust cron daemon for the Microsoft Windows* 
+operating system. However, Python Cron is platform-independant, and can 
+be used on any operating system that supports python.
  
-CygWin (http://www.cygwin.com/) provides a robust implementation of the cron daemon, however it requires installing the full cygwin package. There are currently other alternatives that are either not robust, not free or not open source. Examples of these alternatives are WinCron (http://www.wincron.co.uk/), Cron (http://www.kalab.com/freeware/cron/cron.htm).
+CygWin (http://www.cygwin.com/) provides a robust implementation of the cron 
+daemon, however it requires installing the full cygwin package. There are 
+currently other alternatives that are either not robust, not free or not 
+open source. Examples of these alternatives are WinCron 
+(http://www.wincron.co.uk/), Cron (http://www.kalab.com/freeware/cron/cron.htm).
  
 This implementation is very simple, complete and robust.
 
@@ -92,3 +100,4 @@ To avoid this, use the provided program silentstart in your cron file.
 - Crontab files can not have environment variable definitions.
 - pycron doeas not support the expresions of the form /2, month
   or day of the week names, or dash expresions such as 5-9.
+

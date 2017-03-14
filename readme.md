@@ -1,14 +1,11 @@
-#
 # Python Cron
-# by Emilio Schapira
-# Copyright (C) 2003 Advanced Interface Technologies, Inc.
-# http://www.advancedinterfaces.com
-# http://sourceforge.net/projects/pycron/
-#
+by Emilio Schapira
+Copyright (C) 2003 Advanced Interface Technologies, Inc.
+http://www.advancedinterfaces.com
+http://sourceforge.net/projects/pycron/
 
-**
-** INTRODUCTION
-**
+
+## INTRODUCTION
 
 This is a clone of the well-known cron job scheduler for the unix flavored 
 operating systems. It is implemented in Python. The main motivation for the 
@@ -24,11 +21,10 @@ open source. Examples of these alternatives are WinCron
  
 This implementation is very simple, complete and robust.
 
-**
-** USAGE
-**
 
-usage: cron [crontab_file_name [log_file_name [pid_file_name]]]
+## USAGE
+
+	usage: cron [crontab_file_name [log_file_name [pid_file_name]]]
 
     crontab_file_name     Name and location of the crontab file. By
                           default it is ./crontab
@@ -39,9 +35,7 @@ usage: cron [crontab_file_name [log_file_name [pid_file_name]]]
                           process. It can be used later to stop the cron
                           file. By default it is ./cron.pid
 
-**
-** Crontab files
-**
+## Crontab files
 
 A contrab file contains one command per line, except empty lines and
 lines starting with the character #, which are considered as comments.
@@ -66,19 +60,18 @@ arguments are passed to the programm <command> as command-line arguments.
 
 Example cron entries
 
-0 * * * * echo "run every hour"
+	0 * * * * echo "run every hour"
+	
+	0 3 * * * echo "run every day at 3am"
+	
+	30,0 * * * * echo "run every half hour"
+	
+	45 15 * * 1 echo "run every monday at 3:45pm"
+	
+	0 4 15 * * echo "run on the 15th of every month at 4am"
 
-0 3 * * * echo "run every day at 3am"
 
-30,0 * * * * echo "run every half hour"
-
-45 15 * * 1 echo "run every monday at 3:45pm"
-
-0 4 15 * * echo "run on the 15th of every month at 4am"
-
-**
-** Windows 
-**
+## Windows 
 
 This example is for Windows 2K.
 
@@ -94,14 +87,12 @@ You will notice that console processes are launched in a new console window.
 To avoid this, use the provided program silentstart in your crontab file. For
 example:
 
-# Run backup script every morning at 3am
+### Run backup script every morning at 3am
 0 3 * * * silentstart c:\scripts\backup.bat
 
 silentstart.exe must be in the path. You can copy it to c:\winnt\system32.
 
-**
-** Limitations
-**
+## Limitations
 
 - Crontab files can not have environment variable definitions.
 - pycron doeas not support the expresions of the form /2, month
